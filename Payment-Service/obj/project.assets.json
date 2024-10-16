@@ -434,9 +434,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Apps\\.NET Projects\\LIVEDJ Project\\Payment-Service\\Payment-Service\\Payment-Service.csproj",
-      "projectName": "Payment-Service",
-      "projectPath": "C:\\Apps\\.NET Projects\\LIVEDJ Project\\Payment-Service\\Payment-Service\\Payment-Service.csproj",
+      "projectUniqueName": "C:\\Apps\\.NET Projects\\LIVEDJ Project\\Payment-Service\\Payment-Service\\Payment-Service.Api.csproj",
+      "projectName": "Payment-Service.Api",
+      "projectPath": "C:\\Apps\\.NET Projects\\LIVEDJ Project\\Payment-Service\\Payment-Service\\Payment-Service.Api.csproj",
       "packagesPath": "C:\\Users\\Steijn\\.nuget\\packages\\",
       "outputPath": "C:\\Apps\\.NET Projects\\LIVEDJ Project\\Payment-Service\\Payment-Service\\obj\\",
       "projectStyle": "PackageReference",
