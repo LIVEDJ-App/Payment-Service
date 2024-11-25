@@ -1,0 +1,42 @@
+name: Push to Artifact Registry
+
+on:
+    push:
+      branches: [ "main" ]
+
+jobs:
+  push_to_ar:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Google Auth
+        id: auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          token_format: 'access_token'
+          project_id: ${{ secrets.GCR_PROJECT_ID }}
+          service_account: ${{ secrets.GCR_SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ secrets.GCR_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Docker Auth
+        id: docker-auth
+        uses: 'docker/login-action@v3'
+        with:
+          username: 'oauth2accesstoken'
+          password: '${{ steps.auth.outputs.access_token }}'
+          registry: '${{ secrets.GCR_REPO_LOCATION }}-docker.pkg.dev'
+          
+      - name: Debug GCR_URL
+        run: |-
+          echo "GCR_URL: '${{ secrets.GCR_URL }}'"
+          echo "Registry: '${{ secrets.GCR_REPO_LOCATION }}-docker.pkg.dev'"
+      - name: Build and Push Container
+        run: |-
+          docker build -t "${{ secrets.GCR_URL }}/payment-service:${{ github.ref_name }}" ./
+          docker push "${{ secrets.GCR_URL }}/payment-service:${{ github.ref_name }}"
