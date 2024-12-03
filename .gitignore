@@ -20,6 +20,9 @@ nupkg/
 # Code Rush
 .cr/
 
+#AppSettings
+Payment.Api/appsettings.Development.json
+
 # User-specific files
 *.suo
 *.user
